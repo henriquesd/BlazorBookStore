@@ -1,0 +1,25 @@
+﻿@page "/categorydetail/{CategoryId}"
+
+<section class="category-detail">
+    <h1 class="page-title">Details for @Category.Name</h1>
+
+    <div class="col-12 row">
+        <div class="col-10 row">
+            <div class="col-xs-12 col-sm-8">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Category Id</label>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@Category.Id</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Category.Name</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

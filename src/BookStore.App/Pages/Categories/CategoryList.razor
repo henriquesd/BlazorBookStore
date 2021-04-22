@@ -1,0 +1,36 @@
+﻿@page "/categories"
+
+<h1 class="page-title">Categories</h1>
+
+@if (Categories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Category</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var category in Categories)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>
+                    <a href="@($"categorydetail/{category.Id}")" class="btn btn-primary table-btn">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a href="@($"categoryedit/{category.Id}")" class="btn btn-secondary table-btn">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

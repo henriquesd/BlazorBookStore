@@ -14,7 +14,8 @@ Web API Project using .NET 5
 - Moq
 - SQLite In-Memory database
 
-## Blazor
+### Front-end
+- Blazor WebAssembly
 
 ## Architecture
 - 3 Layers:
