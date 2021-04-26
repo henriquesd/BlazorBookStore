@@ -1,0 +1,38 @@
+﻿@page "/categoryedit"
+@page "/categoryedit/{CategoryId}"
+
+@if (!Saved)
+{
+    <section class="category-edit">
+        <h1 class="page-title">Category</h1>
+        <EditForm Model="@CategoryDto" OnValidSubmit="@HandleValidSubmit"
+                  OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary></ValidationSummary>
+            
+            <div class="form-group row">
+                <label for="firstName" class="col-sm-3">Category name: </label>
+                <InputText id="firstName" class="form-control col-sm-8" @bind-Value="@CategoryDto.Name" placeholder="Category"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => CategoryDto.Name)" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Save category</button>
+
+            @if (CategoryDto.Id > 0)
+            {
+                <a class="btn btn-danger" @onclick="@DeleteCategory">
+                    Delete
+                </a>
+            }
+
+            <a type="submit" class="btn btn-info" @onclick="@NavigateToList">Back</a>
+        </EditForm>
+    </section>
+
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+
+
+}

@@ -14,9 +14,17 @@ namespace BookStore.App.Pages.Categories
         [Inject]
         public ICategoryService CategoryDataService { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             Categories = (await CategoryDataService.GetAll()).ToList();
+        }
+
+        protected void AddCategory()
+        {
+            NavigationManager.NavigateTo("/categoryedit");
         }
     }
 }

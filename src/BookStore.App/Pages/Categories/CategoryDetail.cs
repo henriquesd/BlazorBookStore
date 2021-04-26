@@ -15,10 +15,17 @@ namespace BookStore.App.Pages.Categories
         [Inject]
         public ICategoryService CategoryService { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
-            var test = await CategoryService.GetById(int.Parse(CategoryId));
             Category = await CategoryService.GetById(int.Parse(CategoryId));
+        }
+
+        protected void NavigateToList()
+        {
+            NavigationManager.NavigateTo("/categories");
         }
     }
 }
