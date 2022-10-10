@@ -1,9 +1,9 @@
 # BookStore
-Web API Project using .NET 5
+Web API Project using .NET 6
 
 ## Technologies
-- .NET 5
-- Entity Framework 5
+- .NET 6
+- Entity Framework 6
 - Fluent API
 - AutoMapper
 - Swagger
