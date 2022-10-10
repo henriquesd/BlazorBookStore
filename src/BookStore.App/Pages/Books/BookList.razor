@@ -1,0 +1,40 @@
+﻿@page "/books"
+
+<h1 class="page-title">Books</h1>
+
+<div class="col-md-12">
+    <button type="button" class="btn btn-success" @onclick="@AddBook">New Book</button>
+    <hr />
+</div>
+
+@if (Books == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Books)
+            {
+                <tr>
+                    <td>@book.Name</td>
+                    <td>
+                        <a href="@($"bookdetail/{book.Id}")" class="btn btn-primary table-btn">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="@($"bookedit/{book.Id}")" class="btn btn-secondary table-btn">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

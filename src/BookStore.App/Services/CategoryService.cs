@@ -8,7 +8,7 @@ using BookStore.App.Interfaces;
 
 namespace BookStore.App.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService : ICategoryDataService
     {
         private readonly HttpClient _httpClient;
 

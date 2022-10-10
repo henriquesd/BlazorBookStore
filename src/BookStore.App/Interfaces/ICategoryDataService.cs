@@ -4,7 +4,7 @@ using BookStore.App.Dtos;
 
 namespace BookStore.App.Interfaces
 {
-    public interface ICategoryService
+    public interface ICategoryDataService
     {
         Task<IEnumerable<CategoryDto>> GetAll();
         Task<CategoryDto> GetById(int categoryId);

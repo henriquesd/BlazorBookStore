@@ -13,7 +13,7 @@ namespace BookStore.App.Pages.Categories
         public CategoryDto Category { get; set; } = new CategoryDto();
 
         [Inject]
-        public ICategoryService CategoryService { get; set; }
+        public ICategoryDataService CategoryService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }

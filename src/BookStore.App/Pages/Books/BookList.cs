@@ -5,26 +5,26 @@ using BookStore.App.Dtos;
 using BookStore.App.Interfaces;
 using Microsoft.AspNetCore.Components;
 
-namespace BookStore.App.Pages.Categories
+namespace BookStore.App.Pages.Books
 {
-    public partial class CategoryList
+    public partial class BookList
     {
-        public IEnumerable<CategoryDto> Categories { get; set; }
+        public IEnumerable<BookDto> Books { get; set; }
 
         [Inject]
-        public ICategoryDataService CategoryDataService { get; set; }
+        public IBookDataService BookDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            Categories = (await CategoryDataService.GetAll()).ToList();
+            Books = (await BookDataService.GetAll()).ToList();
         }
 
-        protected void AddCategory()
+        protected void AddBook()
         {
-            NavigationManager.NavigateTo("/categoryedit");
+            NavigationManager.NavigateTo("/bookedit");
         }
     }
 }

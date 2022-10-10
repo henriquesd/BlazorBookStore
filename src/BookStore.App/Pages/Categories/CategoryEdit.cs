@@ -13,7 +13,7 @@ namespace BookStore.App.Pages.Categories
         public CategoryDto CategoryDto { get; set; } = new CategoryDto();
 
         [Inject]
-        public ICategoryService CategoryService { get; set; }
+        public ICategoryDataService CategoryDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -24,7 +24,7 @@ namespace BookStore.App.Pages.Categories
 
         protected override async Task OnInitializedAsync()
         {
-            CategoryDto = await CategoryService.GetById(int.Parse(CategoryId));
+            CategoryDto = await CategoryDataService.GetById(int.Parse(CategoryId));
 
             Saved = false;
 
@@ -32,7 +32,7 @@ namespace BookStore.App.Pages.Categories
 
             if (categoryId != 0)
             {
-                CategoryDto = await CategoryService.GetById(categoryId);
+                CategoryDto = await CategoryDataService.GetById(categoryId);
             }
         }
 
@@ -42,7 +42,7 @@ namespace BookStore.App.Pages.Categories
 
             if (CategoryDto.Id == 0)
             {
-                var categoryAdded = await CategoryService.Add(CategoryDto);
+                var categoryAdded = await CategoryDataService.Add(CategoryDto);
                 if (categoryAdded != null)
                 {
                     StatusClass = "alert-success";
@@ -58,7 +58,7 @@ namespace BookStore.App.Pages.Categories
             }
             else
             {
-                await CategoryService.Update(CategoryDto);
+                await CategoryDataService.Update(CategoryDto);
                 StatusClass = "alert-success";
                 Message = "Category updated successfully.";
                 Saved = true;
@@ -73,7 +73,7 @@ namespace BookStore.App.Pages.Categories
 
         protected async Task DeleteCategory()
         {
-            await CategoryService.Delete(CategoryDto.Id);
+            await CategoryDataService.Delete(CategoryDto.Id);
 
             StatusClass = "alert-success";
             Message = "Deleted successfully";
