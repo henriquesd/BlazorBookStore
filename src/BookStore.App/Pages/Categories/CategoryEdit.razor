@@ -16,11 +16,11 @@
                 <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => CategoryDto.Name)" />
             </div>
 
-            <button type="submit" class="btn btn-success">Save category</button>
+            <button type="submit" class="btn btn-success mr-2">Save category</button>
 
             @if (CategoryDto.Id > 0)
             {
-                <a class="btn btn-danger" @onclick="@DeleteCategory">
+                <a class="btn btn-danger mr-2" @onclick="@DeleteCategory">
                     Delete
                 </a>
             }
