@@ -1,16 +1,23 @@
-﻿using System.Threading.Tasks;
-using BookStore.App.Dtos;
+﻿using BookStore.App.Dtos;
 using BookStore.App.Interfaces;
 using Microsoft.AspNetCore.Components;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace BookStore.App.Pages.Categories
+namespace BookStore.App.Pages.Books
 {
-    public partial class CategoryEdit
+    public partial class BookEdit
     {
         [Parameter]
-        public string CategoryId { get; set; }
+        public string BookId { get; set; }
 
-        public CategoryDto CategoryDto { get; set; } = new CategoryDto();
+        public BookDto BookDto { get; set; } = new BookDto();
+
+        public IEnumerable<CategoryDto> CategoryListDto { get; set; }
+
+        [Inject]
+        public IBookDataService BookDataService { get; set; }
 
         [Inject]
         public ICategoryDataService CategoryDataService { get; set; }
@@ -26,13 +33,15 @@ namespace BookStore.App.Pages.Categories
         {
             Saved = false;
 
-            if (CategoryId != null)
-            {
-                int.TryParse(CategoryId, out var categoryId);
+            CategoryListDto = await CategoryDataService.GetAll();
 
-                if (categoryId != 0)
+            if (BookId != null)
+            {
+                int.TryParse(BookId, out var bookId);
+
+                if (bookId != 0)
                 {
-                    CategoryDto = await CategoryDataService.GetById(categoryId);
+                    BookDto = await BookDataService.GetById(bookId);
                 }
             }
         }
@@ -41,27 +50,27 @@ namespace BookStore.App.Pages.Categories
         {
             Saved = false;
 
-            if (CategoryDto.Id == 0)
+            if (BookDto.Id == 0)
             {
-                var categoryAdded = await CategoryDataService.Add(CategoryDto);
-                if (categoryAdded != null)
+                var bookAdded = await BookDataService.Add(BookDto);
+                if (bookAdded != null)
                 {
                     StatusClass = "alert-success";
-                    Message = "New category added successfully.";
+                    Message = "New book added successfully.";
                     Saved = true;
                 }
                 else
                 {
                     StatusClass = "alert-danger";
-                    Message = "Something went wrong adding the new category. Please try again.";
+                    Message = "Something went wrong adding the new book. Please try again.";
                     Saved = false;
                 }
             }
             else
             {
-                await CategoryDataService.Update(CategoryDto);
+                await BookDataService.Update(BookDto);
                 StatusClass = "alert-success";
-                Message = "Category updated successfully.";
+                Message = "Book updated successfully.";
                 Saved = true;
             }
         }
@@ -72,9 +81,9 @@ namespace BookStore.App.Pages.Categories
             Message = "There are some validation errors. Please try again.";
         }
 
-        protected async Task DeleteCategory()
+        protected async Task DeleteBook()
         {
-            await CategoryDataService.Delete(CategoryDto.Id);
+            await BookDataService.Delete(BookDto.Id);
 
             StatusClass = "alert-success";
             Message = "Deleted successfully";
@@ -84,7 +93,7 @@ namespace BookStore.App.Pages.Categories
 
         protected void NavigateToList()
         {
-            NavigationManager.NavigateTo("/categories");
+            NavigationManager.NavigateTo("/books");
         }
     }
 }

@@ -5,22 +5,27 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using BookStore.App.Dtos;
 using BookStore.App.Interfaces;
+using Microsoft.AspNetCore.Components;
 
 namespace BookStore.App.Services
 {
-    public class CategoryService : ICategoryDataService
+    public class CategoryDataService : ICategoryDataService
     {
         private readonly HttpClient _httpClient;
+        private readonly NavigationManager _navigationManager;
 
-        public CategoryService(HttpClient httpClient)
+        public CategoryDataService(HttpClient httpClient, NavigationManager navigationManager)
         {
             _httpClient = httpClient;
+            _navigationManager = navigationManager;
         }
 
         public async Task<IEnumerable<CategoryDto>> GetAll()
         {
-            return await JsonSerializer.DeserializeAsync<IEnumerable<CategoryDto>>
+            var result = await JsonSerializer.DeserializeAsync<IEnumerable<CategoryDto>>
                 (await _httpClient.GetStreamAsync($"api/categories"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+
+            return result;
         }
 
         public async Task<CategoryDto> GetById(int categoryId)
@@ -37,8 +42,12 @@ namespace BookStore.App.Services
 
             if (response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent) return default(CategoryDto);
+
                 return await JsonSerializer.DeserializeAsync<CategoryDto>(await response.Content.ReadAsStreamAsync());
             }
+            
+            //_navigationManager.NavigateTo("categories");
 
             return null;
         }

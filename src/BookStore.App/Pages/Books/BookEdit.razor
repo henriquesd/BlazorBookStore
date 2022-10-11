@@ -1,0 +1,49 @@
+﻿@page "/bookedit"
+@page "/bookedit/{BookId}"
+
+@if (!Saved)
+{
+    <section class="book-edit">
+        <h1 class="page-title">Book</h1>
+        <EditForm Model="@BookDto" OnValidSubmit="@HandleValidSubmit"
+              OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary></ValidationSummary>
+
+            <div class="form-group row">
+                <label for="title" class="col-sm-3">Title: </label>
+                <InputText id="title" class="form-control col-sm-8" @bind-Value="@BookDto.Name" placeholder="Title"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => BookDto.Name)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="author" class="col-sm-3">Author: </label>
+                <InputText id="author" class="form-control col-sm-8" @bind-Value="@BookDto.Author" placeholder="Author"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => BookDto.Author)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="category" class="col-sm-3">Category: </label>
+                <InputSelect id="categoryId" @bind-Value="@BookDto.CategoryId" class="form-select form-control col-sm-8" placeholder="Category">
+                    @foreach (var category in CategoryListDto)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <button type="submit" class="btn btn-success mr-2">Save book</button>
+
+            @if (BookDto.Id > 0)
+            {
+                <button class="btn btn-danger mr-2" type="submit" @onclick="@DeleteBook">Delete</button>
+            }
+
+            <button class="btn btn-info" type="submit" @onclick="@NavigateToList">Back</button>
+        </EditForm>
+    </section>
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+}

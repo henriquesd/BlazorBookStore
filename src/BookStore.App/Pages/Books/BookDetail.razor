@@ -1,27 +1,27 @@
-﻿@page "/categorydetail/{CategoryId}"
+﻿@page "/bookdetail/{BookId}"
 
-<section class="category-detail">
-    <h1 class="page-title">Details for @Category.Name</h1>
+<section class="book-detail">
+    <h1 class="page-title">Details for @Book.Name</h1>
 
     <div class="col-12 row">
         <div class="col-10 row">
             <div class="col-xs-12 col-sm-8">
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Category Id</label>
+                    <label class="col-sm-4 col-form-label">Book Id</label>
                     <div class="col-sm-8">
-                        <label type="text" class="form-control-plaintext">@Category.Id</label>
+                        <label type="text" class="form-control-plaintext">@Book.Id</label>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Name</label>
                     <div class="col-sm-8">
-                        <label type="text" readonly class="form-control-plaintext">@Category.Name</label>
+                        <label type="text" readonly class="form-control-plaintext">@Book.Name</label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <button class="btn btn-info" type="submit" @onclick="@NavigateToList">Back</button>
 
 </section>

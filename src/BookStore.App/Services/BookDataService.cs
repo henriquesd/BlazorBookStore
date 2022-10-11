@@ -8,11 +8,11 @@ using BookStore.App.Interfaces;
 
 namespace BookStore.App.Services
 {
-    public class BookService : IBookDataService
+    public class BookDataService : IBookDataService
     {
         private readonly HttpClient _httpClient;
 
-        public BookService(HttpClient httpClient)
+        public BookDataService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

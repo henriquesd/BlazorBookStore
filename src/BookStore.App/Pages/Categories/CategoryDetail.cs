@@ -13,14 +13,14 @@ namespace BookStore.App.Pages.Categories
         public CategoryDto Category { get; set; } = new CategoryDto();
 
         [Inject]
-        public ICategoryDataService CategoryService { get; set; }
+        public ICategoryDataService CategoryDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            Category = await CategoryService.GetById(int.Parse(CategoryId));
+            Category = await CategoryDataService.GetById(int.Parse(CategoryId));
         }
 
         protected void NavigateToList()

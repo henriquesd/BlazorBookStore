@@ -24,5 +24,7 @@ namespace BookStore.App.Dtos
 
         [Required(ErrorMessage = "The field {0} is required")]
         public int CategoryId { get; set; }
+        
+        public string CategoryName { get; set; }
     }
 }

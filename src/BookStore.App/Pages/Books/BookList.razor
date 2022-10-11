@@ -17,6 +17,8 @@ else
         <thead>
             <tr>
                 <th>Book</th>
+                <th>Author</th>
+                <th>Category</th>
                 <th>Options</th>
             </tr>
         </thead>
@@ -25,6 +27,8 @@ else
             {
                 <tr>
                     <td>@book.Name</td>
+                    <td>@book.Author</td>
+                    <td>@book.CategoryName</td>
                     <td>
                         <a href="@($"bookdetail/{book.Id}")" class="btn btn-primary table-btn">
                             <i class="fas fa-info-circle"></i>

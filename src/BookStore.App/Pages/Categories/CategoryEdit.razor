@@ -11,8 +11,8 @@
             <ValidationSummary></ValidationSummary>
             
             <div class="form-group row">
-                <label for="firstName" class="col-sm-3">Category name: </label>
-                <InputText id="firstName" class="form-control col-sm-8" @bind-Value="@CategoryDto.Name" placeholder="Category"></InputText>
+                <label for="category" class="col-sm-3">Category name: </label>
+                <InputText id="category" class="form-control col-sm-8" @bind-Value="@CategoryDto.Name" placeholder="Category"></InputText>
                 <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => CategoryDto.Name)" />
             </div>
 
@@ -20,19 +20,14 @@
 
             @if (CategoryDto.Id > 0)
             {
-                <a class="btn btn-danger mr-2" @onclick="@DeleteCategory">
-                    Delete
-                </a>
+                <button class="btn btn-danger mr-2" type="submit" @onclick="@DeleteCategory">Delete</button>
             }
 
-            <a type="submit" class="btn btn-info" @onclick="@NavigateToList">Back</a>
+            <button class="btn btn-info" type="submit" @onclick="@NavigateToList">Back</button>
         </EditForm>
     </section>
-
 }
 else
 {
     <div class="alert @StatusClass">@Message</div>
-
-
 }
