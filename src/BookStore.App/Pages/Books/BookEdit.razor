@@ -16,6 +16,13 @@
                 <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => BookDto.Name)" />
             </div>
 
+            
+            <div class="form-group row">
+                <label for="description" class="col-sm-3">Description: </label>
+                <InputTextArea id="description" class="form-control col-sm-8" @bind-Value="@BookDto.Description" placeholder="Description"></InputTextArea>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => BookDto.Description)" />
+            </div>
+
             <div class="form-group row">
                 <label for="author" class="col-sm-3">Author: </label>
                 <InputText id="author" class="form-control col-sm-8" @bind-Value="@BookDto.Author" placeholder="Author"></InputText>
@@ -30,6 +37,18 @@
                         <option value="@category.Id">@category.Name</option>
                     }
                 </InputSelect>
+            </div>
+
+            <div class="form-group row">
+                <label for="publishDate" class="col-sm-3">Publish Date: </label>
+                <InputDate id="publishDate" class="form-control col-sm-8" @bind-Value="@BookDto.PublishDate" placeholder="PublishDate"></InputDate>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => BookDto.PublishDate)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="value" class="col-sm-3">Value: </label>
+                <InputNumber id="value" class="form-control col-sm-8" @bind-Value="@BookDto.Value" placeholder="Value"></InputNumber>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => BookDto.Value)" />
             </div>
 
             <button type="submit" class="btn btn-success mr-2">Save book</button>
