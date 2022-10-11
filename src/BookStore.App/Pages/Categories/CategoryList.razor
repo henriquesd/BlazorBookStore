@@ -13,28 +13,31 @@
 }
 else
 {
-    <table class="table">
+    <table class="table table-condensed table-bordered table-striped table-hover">
         <thead>
-        <tr>
-            <th>Category</th>
-            <th>Options</th>
-        </tr>
+            <tr>
+                <th>Category</th>
+                <th>Options</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var category in Categories)
-        {
-            <tr>
-                <td>@category.Name</td>
-                <td>
-                    <a href="@($"categorydetail/{category.Id}")" class="btn btn-primary table-btn">
-                        <i class="fas fa-info-circle"></i>
-                    </a>
-                    <a href="@($"categoryedit/{category.Id}")" class="btn btn-secondary table-btn">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                </td>
-            </tr>
-        }
+            @foreach (var category in Categories)
+            {
+                <tr>
+                    <td>@category.Name</td>
+                    <td>
+                        <a href="@($"categorydetail/{category.Id}")" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="@($"categoryedit/{category.Id}")" class="btn btn-secondary">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger" @onclick="() => DeleteCategory(category.Id)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 }

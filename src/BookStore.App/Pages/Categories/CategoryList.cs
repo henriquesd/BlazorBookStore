@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookStore.App.Dtos;
 using BookStore.App.Interfaces;
+using BookStore.App.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace BookStore.App.Pages.Categories
@@ -25,6 +26,11 @@ namespace BookStore.App.Pages.Categories
         protected void AddCategory()
         {
             NavigationManager.NavigateTo("/categoryedit");
+        }
+
+        protected async void DeleteCategory(int categoryId)
+        {
+            await CategoryDataService.Delete(categoryId);
         }
     }
 }

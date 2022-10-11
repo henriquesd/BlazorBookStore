@@ -26,5 +26,10 @@ namespace BookStore.App.Pages.Books
         {
             NavigationManager.NavigateTo("/bookedit");
         }
+
+        protected async void DeleteBook(int bookId)
+        {
+            await BookDataService.Delete(bookId);
+        }
     }
 }

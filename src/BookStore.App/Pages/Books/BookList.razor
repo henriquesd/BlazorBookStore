@@ -13,12 +13,13 @@
 }
 else
 {
-    <table class="table">
+    <table class="table table-condensed table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th>Book</th>
                 <th>Author</th>
                 <th>Category</th>
+                <th>Description</th>
                 <th>Publish Date</th>
                 <th>Value</th>
                 <th>Options</th>
@@ -31,14 +32,18 @@ else
                     <td>@book.Name</td>
                     <td>@book.Author</td>
                     <td>@book.CategoryName</td>
+                    <td>@book.Description</td>
                     <td>@book.PublishDate</td>
                     <td>@book.Value</td>
                     <td>
-                        <a href="@($"bookdetail/{book.Id}")" class="btn btn-primary table-btn">
+                        <a href="@($"bookdetail/{book.Id}")" class="btn btn-primary">
                             <i class="fas fa-info-circle"></i>
                         </a>
-                        <a href="@($"bookedit/{book.Id}")" class="btn btn-secondary table-btn">
+                        <a href="@($"bookedit/{book.Id}")" class="btn btn-secondary">
                             <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger" @onclick="() => DeleteBook(book.Id)">
+                            <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>
